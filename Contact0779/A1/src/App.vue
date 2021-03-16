@@ -1,11 +1,21 @@
 <template>
-  <!-- <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3.0 + Vite" /> -->
-  <div id="app">
-    <div id="nav">
-      <!-- <router-link to="/">List of Contact</router-link> -->
+  <div id="">
+    <div class="ui inverted menu">
+      <div class="header item">
+        <img alt="Vue logo" src="./assets/logo.png" />
+      </div>
+      <router-link to="/" class="item">Contacts</router-link>
+      <div class="right menu">
+        <router-link to="/" class="item"><i class="user icon large"></i></router-link>
+      </div>
     </div>
-    <router-view></router-view>
+    <div id="nav">
+      <div class="card">
+        <div class="card-body">
+          <router-view></router-view>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -25,12 +35,11 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
 }
 
 #nav {
-  padding: 30px;
+  padding: 5px;
 }
 
 #nav a {
