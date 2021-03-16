@@ -3,7 +3,7 @@
   <HelloWorld msg="Hello Vue 3.0 + Vite" /> -->
   <div id="app">
     <div id="nav">
-      <router-link to="/">List of Contact</router-link>
+      <!-- <router-link to="/">List of Contact</router-link> -->
     </div>
     <router-view></router-view>
   </div>
