@@ -14,7 +14,7 @@
           <a class="ui teal ribbon label">Contact</a>
           <input type="text" placeholder="Search..." v-model="search" />
           <div class="ui button">Search</div>
-          <div class="ui orange button"><router-link to="/addcontact">Add</router-link></div>
+          <button class="ui orange button" @click.native="$router.push('/addcontact')">Add</button>
         </div>
       </form>
     </div>
@@ -31,15 +31,20 @@
             >
               <img :src="contact.img" class="ui image" />
               <div class="content">
-                <div class="header">{{ contact.firstname }}</div>
-                <div class="meta">
+                <div class="center aligned header">{{ contact.firstname }}</div>
+                <div class="center aligned meta">
                   {{ contact.mobile }}<br />
                   {{ contact.email }}
                 </div>
-                <div class="description"></div>
+                <div class="center aligned description"></div>
               </div>
-              <div class="extra content">
-                <i class="user icon"></i>
+              <div class="center aligned extra content">
+                <button class="ui primary icon button">
+                  <i class="edit outline icon"></i>
+                </button>
+                <button class="ui red icon button">
+                  <i class="eraser icon"></i>
+                </button>
               </div>
             </div>
           </div>
