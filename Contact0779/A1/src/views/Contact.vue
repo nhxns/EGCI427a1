@@ -14,7 +14,10 @@
           <a class="ui teal ribbon label">Contact</a>
           <input type="text" placeholder="Search..." v-model="search" />
           <div class="ui button">Search</div>
-          <button class="ui orange button" @click.native="$router.push('/addcontact')">Add</button>
+          <button class="ui orange button" @click.native="$router.push('/addcontact')">
+            <i class="plus icon"></i>
+            Add
+          </button>
         </div>
       </form>
     </div>

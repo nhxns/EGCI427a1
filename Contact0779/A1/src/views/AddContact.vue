@@ -30,10 +30,12 @@
       <input type="text" name="last-name" placeholder="Last Name" />
     </div>
 
-    <div class="ui centered buttons">
-      <button class="ui primary basic button" type="submit">Save</button>
+    <div class="ui buttons">
+      <button class="ui primary basic button" type="submit">
+        <i class="save outline icon"></i>Save
+      </button>
       <button class="ui primary basic button" type="submit" @click.native="$router.push('/')">
-        Close
+        <i class="x icon icon"></i> Close
       </button>
     </div>
   </form>
@@ -50,3 +52,4 @@ export default {
   methods: {},
 };
 </script>
+<style lang=""></style>
