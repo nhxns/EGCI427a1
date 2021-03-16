@@ -42,7 +42,16 @@
                 <div class="center aligned description"></div>
               </div>
               <div class="center aligned extra content">
-                <button class="ui primary icon button">
+                <button
+                  class="ui primary icon button"
+                  @click.native="
+                    $router.push({
+                      path: 'editcontact',
+                      name: 'EditContact',
+                      params: { contactID: user_alias._id },
+                    })
+                  "
+                >
                   <i class="edit outline icon"></i>
                 </button>
                 <button class="ui red icon button">
