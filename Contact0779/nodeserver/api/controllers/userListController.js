@@ -1,6 +1,6 @@
 'use strict'
 var mongoose = require('mongoose')
-User = mongoose.model('Users')
+User = mongoose.model('Contacts')
 
 exports.listAllUsers = function(req, res){
     var query = { sort: { firstName: 1 } }
@@ -13,6 +13,7 @@ exports.listAllUsers = function(req, res){
 
 exports.createAUser = function(req, res){
     var newUser = new User(req.body)
+    console.log(req.body)
     newUser.save(function(err, user){
         if(err) throw err
         res.json(user)

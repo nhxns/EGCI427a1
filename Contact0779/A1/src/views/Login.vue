@@ -18,7 +18,7 @@
                 </div>
                 <div class="field">
                     <label>Password</label>
-                    <input type="text" name="password" placeholder="Password" v-model="loginData.password">
+                    <input type="password" name="password" placeholder="Password" v-model="loginData.password">
                 </div>
                 <button class="ui button" type="submit" @click.prevent="login">Login</button>
     </form>

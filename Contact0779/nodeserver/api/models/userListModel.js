@@ -11,24 +11,25 @@ var UserSchema = new Schema({
         type: String,
         Required: 'Please enter'
     },
-    middleName: {
-        type: String,
-        Required: 'Please enter'
-    },
     lastName: {
         type: String,
         Required: 'Please enter'
     },
-    //missed left last_name
-        email: {
+    mobileNum: {
         type: String,
         Required: 'Please enter'
     },
-    createdDate:{
-        type: Date,
-        default :Date.now
-
+    //missed left last_name
+    email: {
+        type: String,
     },
+    facebook: {
+        type: String,
+    },
+    imgUrl: {
+        type: String,
+    }
+
 })
 
-module.exports = mongoose.model('Users', UserSchema)
+module.exports = mongoose.model('Contacts', UserSchema)

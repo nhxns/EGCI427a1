@@ -5,7 +5,7 @@ mongoose = require('mongoose')
 User = require('./api/models/userListModel')
 bodyParser = require('body-parser')
 mongoose.Promise = global.Promise
-mongoose.connect('mongodb://localhost/UserDb', function(error){
+mongoose.connect('mongodb://localhost/ContactList', function(error){
     if(error) throw error
     console.log('Successfully connected');
 })

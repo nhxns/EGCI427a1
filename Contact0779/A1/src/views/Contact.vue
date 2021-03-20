@@ -32,31 +32,26 @@
               v-for="contact in filterContact"
               v-bind:key="contact.id"
             >
-              <img :src="contact.img" class="ui image" />
+              <img :src="contact.imgUrl" class="ui image" style="height: 300px;"/>
               <div class="content">
-                <div class="center aligned header">{{ contact.firstname }}</div>
+                <div class="center aligned header">{{ contact.firstName + " " +  contact.lastName}}</div>
                 <div class="center aligned meta">
-                  {{ contact.mobile }}<br />
+                  {{ contact.mobileNum }}<br />
                   {{ contact.email }}
                 </div>
                 <div class="center aligned description"></div>
               </div>
               <div class="center aligned extra content">
-                <button
-                  class="ui primary icon button"
-                  @click.native="
-                    $router.push({
-                      path: 'editcontact',
-                      name: 'EditContact',
-                      params: { contactID: user_alias._id },
-                    })
-                  "
-                >
+                <router-link :to="{ name: 'EditContact', params: {contactID: contact._id}}">
+                <button class="ui primary icon button" >
                   <i class="edit outline icon"></i>
                 </button>
-                <button class="ui red icon button">
+                </router-link>
+                <router-link to="/contact">
+                <button class="ui red icon button" @click="DELETE(contact._id)">
                   <i class="eraser icon"></i>
                 </button>
+                </router-link>
               </div>
             </div>
           </div>
@@ -102,63 +97,40 @@ export default {
     return {
       search: "",
       uid: "",
-      Contacts: [
-        {
-          id: "01",
-          firstname: "Kristy",
-          lastname: "Chung",
-          middlename: "",
-          gender: "F",
-          email: "kristy@vuejs.com",
-          mobile: "099-000-1234",
-          img: "https://semantic-ui.com/images/avatar2/large/kristy.png",
-        },
-        {
-          id: "02",
-          firstname: "Matt",
-          lastname: "Giampietro",
-          middlename: "",
-          gender: "M",
-          email: "matt.g@vuejs.com",
-          mobile: "099-000-4567",
-          img: "https://semantic-ui.com/images/avatar2/large/matthew.png",
-        },
-        {
-          id: "03",
-          firstname: "Molly",
-          lastname: "",
-          middlename: "",
-          gender: "F",
-          email: "molly@vuejs.com",
-          mobile: "099-123-4567",
-          img: "https://semantic-ui.com/images/avatar2/large/molly.png",
-        },
-        {
-          id: "04",
-          firstname: "Elyse",
-          lastname: "",
-          middlename: "",
-          gender: "M",
-          email: "elyse@vuejs.com",
-          mobile: "099-777-1111",
-          img: "https://semantic-ui.com/images/avatar2/large/elyse.png",
-        },
-      ],
+      Contacts: [],
     };
   },
   computed: {
     filterContact: function () {
       return this.Contacts.filter((val) => {
-        return val.firstname.match(this.search);
-      });
+        return val.firstName.toLowerCase().match(this.search.toLowerCase()) || val.lastName.toLowerCase().match(this.search.toLowerCase())
+      })
     },
   },
-  mounted() {},
-  methods: {
-    editUser(){
-
+  mounted () {
+        axios.get('http://localhost:5000/users')
+        .then((response)=>{
+            console.log(response.data)
+            this.Contacts = response.data
+        })
+        .catch((error)=>{
+            console.log(error)
+        })
+    },
+  methods:{
+      DELETE(id){
+        this.uid = id
+        var url = 'http://localhost:5000/users/'+id
+        axios.delete(url)
+        .then(()=>{
+          console.log('Delete userId: '+id)
+        })
+        .catch((error)=>{
+          console.log(error)
+        })
+        window.location.reload()
+      },
     }
-  },
 };
 </script>
 
