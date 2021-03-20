@@ -50,3 +50,4 @@ export default {
   methods: {},
 };
 </script>
+<style lang=""></style>
