@@ -39,7 +39,7 @@
                 <div class="center aligned description"></div>
               </div>
               <div class="center aligned extra content">
-                <button class="ui primary icon button">
+                <button class="ui primary icon button" @click.native="editUser">
                   <i class="edit outline icon"></i>
                 </button>
                 <button class="ui red icon button">
@@ -142,7 +142,11 @@ export default {
     },
   },
   mounted() {},
-  methods: {},
+  methods: {
+    editUser(){
+      
+    }
+  },
 };
 </script>
 

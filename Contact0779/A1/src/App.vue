@@ -4,14 +4,14 @@
       <div class="header item">
         <img alt="Vue logo" src="./assets/logo.png" />
       </div>
-      <router-link to="/" class="item">Contacts</router-link>
+      <router-link to="/contact" class="item">Contacts</router-link>
       <div class="right menu">
         <router-link to="/" class="item"><i class="user icon large"></i></router-link>
       </div>
     </div>
     <div id="nav">
       <div class="card">
-        <div class="card-body">
+        <div class="card-body" id="card-body">
           <router-view></router-view>
         </div>
       </div>
@@ -49,4 +49,10 @@ export default {
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
+
+#card-body{
+  width: auto;
+}
+
 </style>

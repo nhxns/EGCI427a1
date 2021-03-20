@@ -3,15 +3,25 @@ import Home from "../views/Home.vue";
 import Contact from "../views/Contact.vue";
 import AddContact from "../views/AddContact.vue";
 import EditContact from "../views/EditContact.vue";
+import Login from  "../views/Login.vue"
 // import HelloWorld from '../views/HelloWorld.vue'
+
 
 const routerHistory = createWebHistory();
 
 const routes = [
   {
-    path: "/home",
-    name: "Home",
-    component: Home,
+    path: "/",
+    redirect: "/login"
+  },
+  {
+    path: '/:catchAll(.*)',
+    redirect: '/login'
+  },
+  {
+    path: "/login",
+    name: "Login",
+    component: Login
   },
   {
     path: "/addcontact",
@@ -19,7 +29,7 @@ const routes = [
     component: AddContact,
   },
   {
-    path: "/",
+    path: "/contact",
     name: "Contact",
     component: Contact,
   },
