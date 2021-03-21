@@ -5,10 +5,13 @@ mongoose = require("mongoose");
 User = require("./api/models/userListModel");
 bodyParser = require("body-parser");
 mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://localhost/ContactList", function (error) {
-  if (error) throw error;
-  console.log("Successfully connected");
-});
+mongoose.connect(
+  "mongodb+srv://egci427:egci427@assignment1.5ozkk.mongodb.net/ContactList",
+  function (error) {
+    if (error) throw error;
+    console.log("Successfully connected");
+  }
+);
 
 const cors = require("cors");
 app.use(cors());

@@ -32,7 +32,11 @@
 
     <div class="ui centered buttons">
       <button class="ui primary basic button" type="submit" @click.prevent="addToAPI">Save</button>
-      <button class="ui primary basic button" type="submit" @click.native="$router.push('/contact')">
+      <button
+        class="ui primary basic button"
+        type="submit"
+        @click.native="$router.push('/contact')"
+      >
         Close
       </button>
     </div>
@@ -46,38 +50,39 @@ export default {
   props: {},
   data() {
     return {
-      User:{
+      User: {
         id: "",
         firstName: "",
         lastName: "",
         mobileNum: "",
         email: "",
         facebook: "",
-        imgUrl: ""
-      }
+        imgUrl: "",
+      },
     };
   },
   methods: {
-    addToAPI(){
-      let newUser={
-        id : this.User.id,
-        firstName : this.User.firstName,
-        lastName : this.User.lastName,
-        mobile : this.User.mobileNum,
-        email : this.User.email,
-        facebook : this.User.facebook,
-        imgUrl : this.User.imgUrl
-      }
-      console.log(newUser)
-        axios.post('http://localhost:5000/users', newUser)
-        .then((response)=> {
-          console.log(response)
+    addToAPI() {
+      let newUser = {
+        id: this.User.id,
+        firstName: this.User.firstName,
+        lastName: this.User.lastName,
+        mobile: this.User.mobileNum,
+        email: this.User.email,
+        facebook: this.User.facebook,
+        imgUrl: this.User.imgUrl,
+      };
+      console.log(newUser);
+      axios
+        .post("https://egci427a1.herokuapp.com/users", newUser)
+        .then((response) => {
+          console.log(response);
         })
-        .catch((error)=> {
-          console.log(error)
-        })
-        this.$route.replace('/contact')
-    }
+        .catch((error) => {
+          console.log(error);
+        });
+      this.$route.replace("/contact");
+    },
   },
 };
 </script>
