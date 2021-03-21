@@ -9,7 +9,7 @@
       <label>First Name</label>
       <input type="text" name="first-name" placeholder="First Name" v-model="User.firstName" />
     </div>
-    <div class="required field">
+    <div class="field">
       <label>Last Name</label>
       <input type="text" name="last-name" placeholder="Last Name" v-model="User.lastName" />
     </div>
@@ -31,8 +31,8 @@
     </div>
 
     <div class="ui centered buttons">
-      <button class="ui primary basic button" type="submit" @click.native="addToAPI">Save</button>
-      <button class="ui primary basic button" type="submit" @click.native="$router.push('/contact')">
+      <div class="ui primary basic button" type="submit" @click="addToAPI">Save</div>
+      <button class="ui primary basic button" type="submit" @click="$router.push('/contact')">
         Close
       </button>
     </div>
@@ -46,38 +46,39 @@ export default {
   props: {},
   data() {
     return {
-      User:{
+      User: {
         id: "",
         firstName: "",
         lastName: "",
         mobileNum: "",
         email: "",
         facebook: "",
-        imgUrl: ""
-      }
+        imgUrl: "",
+      },
     };
   },
   methods: {
-    addToAPI(){
-      let newUser={
-        id : this.User.id,
-        firstName : this.User.firstName,
-        lastName : this.User.lastName,
-        mobile : this.User.mobileNum,
-        email : this.User.email,
-        facebook : this.User.facebook,
-        imgUrl : this.User.imgUrl
-      }
-      console.log(newUser)
-        axios.post('http://localhost:5000/users', newUser)
-        .then((response)=> {
-          console.log(response)
+    addToAPI() {
+      let newUser = {
+        id: this.User.id,
+        firstName: this.User.firstName,
+        lastName: this.User.lastName,
+        mobileNum: this.User.mobileNum,
+        email: this.User.email,
+        facebook: this.User.facebook,
+        imgUrl: this.User.imgUrl,
+      };
+      console.log(newUser);
+      axios
+        .post("https://egci427a1.herokuapp.com/users", newUser)
+        .then((response) => {
+          console.log(response);
+          window.location.href = "/contact";
         })
-        .catch((error)=> {
-          console.log(error)
-        })
-        this.$router.replace('/contact')
-    }
+        .catch((error) => {
+          console.log(error);s
+        });
+    },
   },
 };
 </script>

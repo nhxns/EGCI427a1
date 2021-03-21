@@ -14,7 +14,7 @@
           <a class="ui teal ribbon label">Contact</a>
           <input type="text" placeholder="Search..." v-model="search" />
           <div class="ui button">Search</div>
-          <button class="ui orange button" @click.native="$router.push('/addcontact')">
+          <button class="ui orange button" @click="$router.push('/addcontact')">
             <i class="plus icon"></i>
             Add
           </button>
@@ -30,27 +30,30 @@
               class="ui card"
               style="min-width: 20rem; max-width: 20rem"
               v-for="contact in filterContact"
-              v-bind:key="contact.id"
+              v-bind:key="contact._id"
             >
-              <img :src="contact.imgUrl" class="ui image" style="height: 300px;"/>
+              <img :src="contact.imgUrl" class="ui image" style="height: 300px" />
               <div class="content">
-                <div class="center aligned header">{{ contact.firstName + " " +  contact.lastName}}</div>
-                <div class="center aligned meta">
-                  {{ contact.mobileNum }}<br />
-                  {{ contact.email }}
+                <div class="center aligned header">
+                  {{ contact.firstName + " " + contact.lastName }}
+                </div>
+                <div class="center aligned meta" style="font-size: 0.8rem">
+                  Mobile : {{ contact.mobileNum }}<br />
+                  {{ contact.email ? "Email : " + contact.email : "Email : -" }}<br />
+                  {{ contact.facebook ? "Facebook : " + contact.facebook : "Facebook : -" }}
                 </div>
                 <div class="center aligned description"></div>
               </div>
               <div class="center aligned extra content">
-                <router-link :to="{ name: 'EditContact', params: {contactID: contact._id}}">
-                <button class="ui primary icon button" >
-                  <i class="edit outline icon"></i>
-                </button>
+                <router-link :to="{ name: 'EditContact', params: { contactID: contact._id } }">
+                  <button class="ui primary icon button">
+                    <i class="edit outline icon"></i>
+                  </button>
                 </router-link>
                 <router-link to="/contact">
-                <button class="ui red icon button" @click="DELETE(contact._id)">
-                  <i class="eraser icon"></i>
-                </button>
+                  <button class="ui red icon button" @click="delUser(contact._id)">
+                    <i class="eraser icon"></i>
+                  </button>
                 </router-link>
               </div>
             </div>
@@ -103,34 +106,41 @@ export default {
   computed: {
     filterContact: function () {
       return this.Contacts.filter((val) => {
-        return val.firstName.toLowerCase().match(this.search.toLowerCase()) || val.lastName.toLowerCase().match(this.search.toLowerCase())
-      })
+        return (
+          val.firstName.toLowerCase().match(this.search.toLowerCase()) ||
+          val.lastName.toLowerCase().match(this.search.toLowerCase())
+        );
+      });
     },
   },
-  mounted () {
-        axios.get('http://localhost:5000/users')
-        .then((response)=>{
-            console.log(response.data)
-            this.Contacts = response.data
-        })
-        .catch((error)=>{
-            console.log(error)
-        })
+  mounted() {
+    axios
+      .get("https://egci427a1.herokuapp.com/users")
+      .then((response) => {
+        console.log(response.data);
+        this.Contacts = response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
+  methods: {
+    DELETE(id) {
+      this.uid = id;
     },
-  methods:{
-      DELETE(id){
-        this.uid = id
-        var url = 'http://localhost:5000/users/'+id
-        axios.delete(url)
-        .then(()=>{
-          console.log('Delete userId: '+id)
+    delUser(Contact_id) {
+      var url = "https://egci427a1.herokuapp.com/users/" + Contact_id;
+      axios
+        .delete(url)
+        .then(() => {
+          console.log("Delete userId: " + Contact_id);
+          window.location.reload();
         })
-        .catch((error)=>{
-          console.log(error)
-        })
-        window.location.reload()
-      },
-    }
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  },
 };
 </script>
 
