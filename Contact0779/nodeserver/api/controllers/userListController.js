@@ -62,10 +62,15 @@ exports.createALoginUser = function(req, res){
     })
 }
 
-exports.readALoginUser = function(req, res){
-    //console.log(req.params.userId)
-    User.findById(req.params.userId, function(err, user){
+exports.Login = function(req, res){
+    var LoginUser = req.body
+    console.log(req.body.username)
+    Login.findOne({username: req.body.username}, function(err, login){
         if(err) throw err
-        res.json(user)
+        if(login.password == req.body.password){
+            res.json({
+                success: true,
+            })
+        }
     })
 }

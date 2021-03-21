@@ -11,7 +11,9 @@ module.exports = function(app){
         .delete(userList.deleteAUser)
         .post(userList.updateAUser)
 
-    app.route('/login')
-        .get(userList.readALoginUser)
+    app.route('/create')
         .post(userList.createALoginUser)
+
+    app.route('/login')
+        .post(userList.Login)
 }

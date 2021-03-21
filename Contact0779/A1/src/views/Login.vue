@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import axios from "axios"
 export default {
     name: "Login",
     data() {
@@ -39,12 +40,19 @@ export default {
     },
     methods: {
         login(){
-            if(this.loginData.username == "bob" && this.loginData.password == "1234"){
-                this.$router.push('/contact')
+            if(this.loginData.username == "" || this.loginData.password == ""){
+                return
             }
-            else{
-                this.incorrect = true
-            }
+            axios.post("http://localhost:5000/login",this.loginData)
+                .then((response) => {
+                    console.log(response)
+                    if(response.data.success == true){
+                    window.location.href = "/contact";
+                    }
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
         }
     },
 }
