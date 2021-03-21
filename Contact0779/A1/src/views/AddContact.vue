@@ -31,7 +31,7 @@
     </div>
 
     <div class="ui centered buttons">
-      <button class="ui primary basic button" type="submit" @click.prevent="addToAPI">Save</button>
+      <button class="ui primary basic button" type="submit" @click.native="addToAPI">Save</button>
       <button class="ui primary basic button" type="submit" @click.native="$router.push('/contact')">
         Close
       </button>
@@ -76,7 +76,7 @@ export default {
         .catch((error)=> {
           console.log(error)
         })
-        this.$route.replace('/contact')
+        this.$router.replace('/contact')
     }
   },
 };
