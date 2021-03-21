@@ -9,7 +9,7 @@
       <label>First Name</label>
       <input type="text" name="first-name" placeholder="First Name" v-model="User.firstName" />
     </div>
-    <div class="required field">
+    <div class="field">
       <label>Last Name</label>
       <input type="text" name="last-name" placeholder="Last Name" v-model="User.lastName" />
     </div>
@@ -31,7 +31,7 @@
     </div>
 
     <div class="ui centered buttons">
-      <button class="ui primary basic button" type="submit" @click.prevent="addToAPI">Save</button>
+      <div class="ui primary basic button" type="submit" @click="addToAPI">Save</div>
       <button class="ui primary basic button" type="submit" @click="$router.push('/contact')">
         Close
       </button>
@@ -63,7 +63,7 @@ export default {
         id: this.User.id,
         firstName: this.User.firstName,
         lastName: this.User.lastName,
-        mobile: this.User.mobileNum,
+        mobileNum: this.User.mobileNum,
         email: this.User.email,
         facebook: this.User.facebook,
         imgUrl: this.User.imgUrl,
@@ -73,11 +73,11 @@ export default {
         .post("https://egci427a1.herokuapp.com/users", newUser)
         .then((response) => {
           console.log(response);
+          window.location.href = "/contact";
         })
         .catch((error) => {
           console.log(error);
         });
-      this.$route.replace("/contact");
     },
   },
 };

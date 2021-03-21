@@ -30,16 +30,17 @@
               class="ui card"
               style="min-width: 20rem; max-width: 20rem"
               v-for="contact in filterContact"
-              v-bind:key="contact.id"
+              v-bind:key="contact._id"
             >
               <img :src="contact.imgUrl" class="ui image" style="height: 300px" />
               <div class="content">
                 <div class="center aligned header">
                   {{ contact.firstName + " " + contact.lastName }}
                 </div>
-                <div class="center aligned meta">
-                  {{ contact.mobileNum }}<br />
-                  {{ contact.email }}
+                <div class="center aligned meta" style="font-size: 0.8rem">
+                  Mobile : {{ contact.mobileNum }}<br />
+                  {{ contact.email ? "Email : " + contact.email : "Email : -" }}<br />
+                  {{ contact.facebook ? "Facebook : " + contact.facebook : "Facebook : -" }}
                 </div>
                 <div class="center aligned description"></div>
               </div>
@@ -50,7 +51,7 @@
                   </button>
                 </router-link>
                 <router-link to="/contact">
-                  <button class="ui red icon button" @click="DELETE(contact._id)">
+                  <button class="ui red icon button" @click="delUser(contact._id)">
                     <i class="eraser icon"></i>
                   </button>
                 </router-link>
@@ -126,16 +127,18 @@ export default {
   methods: {
     DELETE(id) {
       this.uid = id;
-      var url = "https://egci427a1.herokuapp.com/users/" + id;
+    },
+    delUser(Contact_id) {
+      var url = "https://egci427a1.herokuapp.com/users/" + Contact_id;
       axios
         .delete(url)
         .then(() => {
-          console.log("Delete userId: " + id);
+          console.log("Delete userId: " + Contact_id);
+          window.location.reload();
         })
         .catch((error) => {
           console.log(error);
         });
-      window.location.reload();
     },
   },
 };

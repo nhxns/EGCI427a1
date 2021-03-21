@@ -32,9 +32,7 @@
       </div>
 
       <div class="ui centered buttons">
-        <button class="ui primary basic button" type="submit" @click.prevent="editToAPI">
-          Save
-        </button>
+        <div class="ui primary basic button" type="submit" @click="editToAPI">Save</div>
         <button class="ui primary basic button" type="submit" @click="$router.push('/contact')">
           Close
         </button>
@@ -78,6 +76,7 @@ export default {
         .post("https://egci427a1.herokuapp.com/users/" + this.$route.params.contactID, newUser)
         .then((response) => {
           console.log(response);
+          window.location.href = "/contact";
         })
         .catch((error) => {
           console.log(error);
