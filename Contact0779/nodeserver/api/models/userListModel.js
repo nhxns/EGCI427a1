@@ -29,7 +29,18 @@ var UserSchema = new Schema({
     imgUrl: {
         type: String,
     }
+})
 
+var LoginSchema = new Schema({
+    username: {
+        type: String,
+        Required: 'Please enter'
+    },
+    password: {
+        type: String,
+        Required: 'Please enter'
+    }
 })
 
 module.exports = mongoose.model('Contacts', UserSchema)
+module.exports = mongoose.model('LoginUser', LoginSchema)

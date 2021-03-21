@@ -1,6 +1,7 @@
 'use strict'
 var mongoose = require('mongoose')
 User = mongoose.model('Contacts')
+Login = mongoose.model('LoginUser')
 
 exports.listAllUsers = function(req, res){
     var query = { sort: { firstName: 1 } }
@@ -48,6 +49,23 @@ exports.updateAUser = function(req, res){
     User.findByIdAndUpdate(req.params.userId, newUser, {new: true}, function(err, user){
         if(err) throw err
         console.log(user)
+        res.json(user)
+    })
+}
+
+exports.createALoginUser = function(req, res){
+    var newUser = new Login(req.body)
+    console.log(req.body)
+    newUser.save(function(err, user){
+        if(err) throw err
+        res.json(user)
+    })
+}
+
+exports.readALoginUser = function(req, res){
+    //console.log(req.params.userId)
+    User.findById(req.params.userId, function(err, user){
+        if(err) throw err
         res.json(user)
     })
 }

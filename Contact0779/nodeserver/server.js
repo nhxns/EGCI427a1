@@ -3,6 +3,7 @@ app = express()
 port = process.env.PORT || 5000
 mongoose = require('mongoose')
 User = require('./api/models/userListModel')
+Login = require('./api/models/userListModel')
 bodyParser = require('body-parser')
 mongoose.Promise = global.Promise
 mongoose.connect('mongodb://localhost/ContactList', function(error){
