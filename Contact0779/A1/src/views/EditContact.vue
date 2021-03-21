@@ -35,11 +35,7 @@
         <button class="ui primary basic button" type="submit" @click.prevent="editToAPI">
           Save
         </button>
-        <button
-          class="ui primary basic button"
-          type="submit"
-          @click.native="$router.push('/contact')"
-        >
+        <button class="ui primary basic button" type="submit" @click="$router.push('/contact')">
           Close
         </button>
       </div>

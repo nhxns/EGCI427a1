@@ -14,7 +14,7 @@
           <a class="ui teal ribbon label">Contact</a>
           <input type="text" placeholder="Search..." v-model="search" />
           <div class="ui button">Search</div>
-          <button class="ui orange button" @click.native="$router.push('/addcontact')">
+          <button class="ui orange button" @click="$router.push('/addcontact')">
             <i class="plus icon"></i>
             Add
           </button>
@@ -114,7 +114,7 @@ export default {
   },
   mounted() {
     axios
-      .get("http://localhost:5000/users")
+      .get("https://egci427a1.herokuapp.com/users")
       .then((response) => {
         console.log(response.data);
         this.Contacts = response.data;
